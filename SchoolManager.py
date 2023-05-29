@@ -81,23 +81,23 @@ class SchoolManager():
         self.details_department_entry = tk.Text(self.details_frame, height=2)
         self.details_department_entry.grid(row=1, column=1, sticky='w')
 
-        # Create Location label and entry field
-        self.details_location_label = tk.Label(self.details_frame, text="위치")
-        self.details_location_label.grid(row=2, column=0, sticky='e')
-        self.details_location_entry = tk.Text(self.details_frame, height=4)
-        self.details_location_entry.grid(row=2, column=1, sticky='w')
-
         # Create Obligation label and entry field
         self.details_obligation_label = tk.Label(self.details_frame, text="재직의무")
-        self.details_obligation_label.grid(row=3, column=0, sticky='e')
+        self.details_obligation_label.grid(row=2, column=0, sticky='e')
         self.details_obligation_entry = tk.Text(self.details_frame, height=2)
-        self.details_obligation_entry.grid(row=3, column=1, sticky='w')
+        self.details_obligation_entry.grid(row=2, column=1, sticky='w')
 
         # Create Link label and entry field
         self.details_link_label = tk.Label(self.details_frame, text="입학처 링크")
-        self.details_link_label.grid(row=4, column=0, sticky='e')
+        self.details_link_label.grid(row=3, column=0, sticky='e')
         self.details_link_entry = tk.Text(self.details_frame, height=4)
-        self.details_link_entry.grid(row=4, column=1, sticky='w')
+        self.details_link_entry.grid(row=3, column=1, sticky='w')
+
+        # Create Location label and entry field
+        self.details_location_label = tk.Label(self.details_frame, text="위치")
+        self.details_location_label.grid(row=4, column=0, sticky='e')
+        self.details_location_entry = tk.Text(self.details_frame, height=20)
+        self.details_location_entry.grid(row=4, column=1, sticky='w')
 
     def create_details_button_frame(self):
 
@@ -121,11 +121,17 @@ class SchoolManager():
         self.details_obligation_entry.config(state='normal')
         self.details_link_entry.config(state='normal')
 
-
         self.details_name_entry.delete('1.0', 'end')
-        self.details_name_entry.insert('1.0', school.name)
         self.details_department_entry.delete('1.0', 'end')
+        self.details_location_entry.delete('1.0', 'end')
+        self.details_obligation_entry.delete('1.0', 'end')
+        self.details_link_entry.delete('1.0', 'end')
+
+        self.details_name_entry.insert('1.0', school.name)
         self.details_department_entry.insert('1.0', school.department)
+        self.details_location_entry.insert('1.0', school.location)
+        self.details_obligation_entry.insert('1.0', school.obligation)
+        self.details_link_entry.insert('1.0', school.link)
 
         self.details_name_entry.config(state='disabled')
         self.details_department_entry.config(state='disabled')
