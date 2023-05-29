@@ -32,7 +32,7 @@ class QnAManager():
         self.main_frame.grid_columnconfigure(2, weight=30)
 
     def create_main_widgets(self):
-        self.question_label = tk.Label(self.main_frame, text="question:")
+        self.question_label = tk.Label(self.main_frame, text="질문:")
         self.question_label.grid(row=0, column=0, sticky='e')
         self.question_entry = tk.Text(self.main_frame, height=4)
         self.question_entry.grid(row=0, column=1, sticky='w')
@@ -40,7 +40,7 @@ class QnAManager():
         self.create_button = tk.Button(self.main_frame, text="등록", command=self.create, height=2)
         self.create_button.grid(row=0, column=2, rowspan=2, sticky='nsew')
 
-        self.answer_label = tk.Label(self.main_frame, text="answer:")
+        self.answer_label = tk.Label(self.main_frame, text="답변:")
         self.answer_label.grid(row=1, column=0, sticky='e')
         self.answer_entry = tk.Text(self.main_frame, height=4)
         self.answer_entry.grid(row=1, column=1, sticky='w')
@@ -70,12 +70,12 @@ class QnAManager():
         self.details_frame.grid_columnconfigure(2, weight=30)
 
     def create_detail_widgets(self):
-        self.details_question_label = tk.Label(self.details_frame, text="question")
+        self.details_question_label = tk.Label(self.details_frame, text="질문")
         self.details_question_label.grid(row=0, column=0, sticky='e')
         self.details_question_entry = tk.Text(self.details_frame, height=4)
         self.details_question_entry.grid(row=0, column=1, sticky='w')
 
-        self.details_answer_label = tk.Label(self.details_frame, text="answer:")
+        self.details_answer_label = tk.Label(self.details_frame, text="답변:")
         self.details_answer_label.grid(row=1, column=0, sticky='e')
         self.details_answer_entry = tk.Text(self.details_frame, height=40)
         self.details_answer_entry.grid(row=1, column=1, sticky='w')
@@ -87,7 +87,7 @@ class QnAManager():
         self.update_button = tk.Button(self.details_button_frame, text="수정", command=self.update)
         self.update_button.pack(side="left")
 
-        self.back_button = tk.Button(self.details_button_frame, text="Back", command=self.back)
+        self.back_button = tk.Button(self.details_button_frame, text="뒤로가기", command=self.back)
         self.back_button.pack(side="left")
 
     def create(self):
@@ -100,6 +100,11 @@ class QnAManager():
             self.current_qna_index = len(self.qnas) - 1
             self.save_data()
             self.update_ui()
+
+        self.question_entry.delete('1.0', 'end')
+        self.question_entry.insert('1.0', '')
+        self.answer_entry.delete('1.0', 'end')
+        self.answer_entry.insert('1.0', '')
 
     def read(self):
         self.current_qna_index = self.listbox.curselection()[0]  

@@ -32,7 +32,7 @@ class FAQManager():
         self.main_frame.grid_columnconfigure(2, weight=30)
         
     def create_main_widgets(self):
-        self.title_label = tk.Label(self.main_frame, text="Title:")
+        self.title_label = tk.Label(self.main_frame, text="질문:")
         self.title_label.grid(row=0, column=0, sticky='e')
         self.title_entry = tk.Text(self.main_frame, height=4)
         self.title_entry.grid(row=0, column=1, sticky='w')
@@ -40,7 +40,7 @@ class FAQManager():
         self.create_button = tk.Button(self.main_frame, text="등록", command=self.create, height=2)
         self.create_button.grid(row=0, column=2, rowspan=2, sticky='nsew')
 
-        self.contents_label = tk.Label(self.main_frame, text="Contents:")
+        self.contents_label = tk.Label(self.main_frame, text="답변:")
         self.contents_label.grid(row=1, column=0, sticky='e')
         self.contents_entry = tk.Text(self.main_frame, height=4)
         self.contents_entry.grid(row=1, column=1, sticky='w')
