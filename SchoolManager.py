@@ -8,7 +8,7 @@ from functools import partial
 import customtkinter
 
 class SchoolManager():
-    def __init__(self, root, filename='./컴퓨팅적사고/재직자전형소개프로그램/data/school_data.json'):
+    def __init__(self, root, filename='C:/workspace/comsaco/data/school_data.json'):
         self.root = root
         self.schools = []
         self.basePath = path.dirname(path.realpath(__file__))
@@ -79,22 +79,27 @@ class SchoolManager():
 
     def create_detail_widgets(self):
         fields = [('학교명', 'name'), ('학과', 'department'), ('재직의무', 'obligation'), 
-                ('입학처 링크', 'link'), ('위치', 'location')]
+                ('입학처 링크', 'link')]
         for i, (label_text, entry_var) in enumerate(fields):
             label = customtkinter.CTkLabel(self.frame, text=label_text)
-            label.grid(row=i, column=0, padx=10, pady=10, sticky='e') # padding added
-            entry = customtkinter.CTkTextbox(self.frame, height=20 if label_text == '학교명' or label_text == '위치' else 2, width=100) # Adjusted height and width
-            entry.grid(row=i, column=1, padx=10, pady=10, sticky='ew') # Adjusted 'sticky' parameter for horizontal expansion
+            label.grid(row=i, column=0, padx=10, pady=20, sticky='e') # padding added
+            entry = customtkinter.CTkTextbox(self.frame, height=20, width=450) # Adjusted height and width
+            entry.grid(row=i, column=1, padx=10, pady=15, sticky='ew') # Adjusted 'sticky' parameter for horizontal expansion
             setattr(self, 'details_' + entry_var + '_entry', entry)
-
+            
+        self.title_label = customtkinter.CTkLabel(self.frame, text="위치")
+        self.title_label.grid(row=5, column=0, sticky='e',padx=10,pady=20)
+        self.entry = customtkinter.CTkEntry(self.frame, width=450, height=180)
+        self.entry.grid(row=5, column=1, sticky='ew',padx=10,pady=15)
+        setattr(self, 'details_' + "location" + '_entry', entry)
     
     
     def create_details_button_frame(self):
         self.details_button_frame = customtkinter.CTkFrame(self.frame)
         self.details_button_frame.grid()
 
-        self.back_button = customtkinter.CTkButton(self.details_button_frame, text="뒤로가기", command=self.back)
-        self.back_button.grid(row=0, column=0, padx=10, pady=10, sticky='w')
+        self.back_button = customtkinter.CTkButton(self.details_button_frame, text="뒤로가기", command=self.back,bg_color="#222222")
+        self.back_button.grid(row=0, column=0, sticky='w')
 
     def back(self):
         self.details_frame.pack_forget()

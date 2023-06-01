@@ -4,7 +4,7 @@ import json
 import customtkinter
 
 class QnAManager():
-    def __init__(self, root, filename='./컴퓨팅적사고/재직자전형소개프로그램/data/qna_data.json'):
+    def __init__(self, root, filename='C:/workspace/comsaco/data/qna_data.json'):
         self.qnas = []
         self.current_qna_index = None
         self.root = root
@@ -61,36 +61,40 @@ class QnAManager():
 
 
     def create_detail_frame(self):
-        self.details_frame = customtkinter.CTkFrame(self.root)
-        self.details_frame.pack_forget() 
+        self.details_frame = customtkinter.CTkFrame(self.root,width=800,height=600)
+        self.details_frame.pack(expand=True)
+        self.details_frame.pack_forget()
+        
+        self.frame = customtkinter.CTkFrame(self.details_frame, width=800, height=600)
+        self.frame.place(relx=0.5, rely=0.5, anchor='center')
 
-        self.details_frame.grid_rowconfigure(0, weight=1)
-        self.details_frame.grid_rowconfigure(1, weight=30)
-        self.details_frame.grid_rowconfigure(2, weight=1)
-        self.details_frame.grid_columnconfigure(0, weight=1)
-        self.details_frame.grid_columnconfigure(1, weight=8)
-        self.details_frame.grid_columnconfigure(2, weight=30)
+        # self.details_frame.grid_rowconfigure(0, weight=1)
+        # self.details_frame.grid_rowconfigure(1, weight=30)
+        # self.details_frame.grid_rowconfigure(2, weight=1)
+        # self.details_frame.grid_columnconfigure(0, weight=1)
+        # self.details_frame.grid_columnconfigure(1, weight=8)
+        # self.details_frame.grid_columnconfigure(2, weight=30)
 
     def create_detail_widgets(self):
-        self.details_question_label = customtkinter.CTkLabel(self.details_frame, text="질문")
-        self.details_question_label.grid(row=0, column=0, sticky='e')
-        self.details_question_entry = customtkinter.CTkTextbox(self.details_frame, height=4)
-        self.details_question_entry.grid(row=0, column=1, sticky='w')
+        self.details_question_label = customtkinter.CTkLabel(self.frame, text="질문",height=70,width=100)
+        self.details_question_label.grid(row=0, column=0, sticky='e',padx=10,pady=10)
+        self.details_question_entry = customtkinter.CTkTextbox(self.frame, height=200,width=500)
+        self.details_question_entry.grid(row=0, column=1, sticky='e',padx=10,pady=10)
 
-        self.details_answer_label = customtkinter.CTkLabel(self.details_frame, text="답변:")
-        self.details_answer_label.grid(row=1, column=0, sticky='e')
-        self.details_answer_entry = customtkinter.CTkTextbox(self.details_frame, height=40)
-        self.details_answer_entry.grid(row=1, column=1, sticky='w')
+        self.details_answer_label = customtkinter.CTkLabel(self.frame, text="답변:",height=70,width=100)
+        self.details_answer_label.grid(row=1, column=0, sticky='e',padx=10,pady=10)
+        self.details_answer_entry = customtkinter.CTkTextbox(self.frame, height=200,width=500)
+        self.details_answer_entry.grid(row=1, column=1,sticky='e',padx=10,pady=10)
 
     def create_details_button_frame(self):
-        self.details_button_frame = customtkinter.CTkFrame(self.details_frame)
+        self.details_button_frame = customtkinter.CTkFrame(self.frame)
         self.details_button_frame.grid(row=3, column=0, columnspan=3)
 
         self.update_button = customtkinter.CTkButton(self.details_button_frame, text="수정", command=self.update)
         self.update_button.pack(side="left")
 
         self.back_button = customtkinter.CTkButton(self.details_button_frame, text="뒤로가기", command=self.back)
-        self.back_button.pack(side="left")
+        self.back_button.pack(side="right")
 
     def create(self):
         question = self.question_entry.get("1.0", 'end').strip()  
