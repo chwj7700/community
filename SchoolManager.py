@@ -8,7 +8,7 @@ from functools import partial
 import customtkinter
 
 class SchoolManager():
-    def __init__(self, root, filename='C:/workspace/comsaco/data/school_data.json'):
+    def __init__(self, root, filename='./컴퓨팅적사고/재직자전형소개프로그램/data/school_data.json'):
         self.root = root
         self.schools = []
         self.basePath = path.dirname(path.realpath(__file__))
