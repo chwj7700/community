@@ -60,7 +60,7 @@ class SchoolManager():
                 row += 1
     
     def create_detail_frame(self):
-        self.details_frame = customtkinter.CTkFrame(self.root)
+        self.details_frame = customtkinter.CTkFrame(self.root,width=800,height=600)
         self.details_frame.pack(expand=True)
         self.details_frame.pack_forget()
 
