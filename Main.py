@@ -1,18 +1,17 @@
 import tkinter as tk
 from QnAManager import QnAManager
-from FAQManager import FAQManager
 from SchoolManager import SchoolManager
 from ChatManager import ChatManager
 import customtkinter
 
 customtkinter.set_appearance_mode("dark")
-customtkinter.set_default_color_theme("blue")
+customtkinter.set_default_color_theme("dark-blue")
 
 class MainScreen:
+    
     def __init__(self, root):
         self.root = root
         self.root.option_add("*Font", "돋움체 14")
-        self.faq_manager = FAQManager(root)
         self.qna_manager = QnAManager(root)
         self.school_manager = SchoolManager(root)
         self.chat_manager = ChatManager(root)
@@ -45,12 +44,10 @@ class MainScreen:
         self.chat_manager.main_frame.pack(fill="both",expand=True)
 
     def hide_all(self):
-        self.faq_manager.main_frame.pack_forget()
         self.qna_manager.main_frame.pack_forget()
         self.school_manager.main_frame.pack_forget()
         self.chat_manager.main_frame.pack_forget()
         
-        self.faq_manager.details_frame.pack_forget()
         self.qna_manager.details_frame.pack_forget()
         
         self.school_manager.details_frame.pack_forget()

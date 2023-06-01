@@ -21,43 +21,45 @@ class QnAManager():
         self.load_data()
 
     def create_main_frame(self):
-        self.main_frame = customtkinter.CTkFrame(self.root,bg_color="#222222",fg_color="#222222",border_color="#222222")
-        self.main_frame.pack(fill="both", expand=True)
+        self.main_frame = customtkinter.CTkFrame(self.root,width=800,height=600)
+        self.main_frame.pack(expand=True)
 
-        self.main_frame.grid_rowconfigure(0, weight=1)
-        self.main_frame.grid_rowconfigure(1, weight=1)
-        self.main_frame.grid_rowconfigure(2, weight=30)
-        self.main_frame.grid_rowconfigure(3, weight=1)
-        self.main_frame.grid_columnconfigure(0, weight=1)
-        self.main_frame.grid_columnconfigure(1, weight=8)
-        self.main_frame.grid_columnconfigure(2, weight=30)
+        self.frame = customtkinter.CTkFrame(self.main_frame, width=800, height=600)
+        self.frame.place(relx=0.5, rely=0.5, anchor='center')
+        # self.main_frame.grid_rowconfigure(0, weight=1)
+        # self.main_frame.grid_rowconfigure(1, weight=1)
+        # self.main_frame.grid_rowconfigure(2, weight=30)
+        # self.main_frame.grid_rowconfigure(3, weight=1)
+        # self.main_frame.grid_columnconfigure(0, weight=1)
+        # self.main_frame.grid_columnconfigure(1, weight=8)
+        # self.main_frame.grid_columnconfigure(2, weight=30)
 
     def create_main_widgets(self):
-        self.question_label = customtkinter.CTkLabel(self.main_frame, text="질문:",padx=10, pady=10)
-        self.question_label.grid(row=0, column=0, sticky='e')
-        self.question_entry = customtkinter.CTkTextbox(self.main_frame, height=40, width=500,padx=10, pady=20)
-        self.question_entry.grid(row=0, column=1, sticky='w')
+        self.question_label = customtkinter.CTkLabel(self.frame, text="질문:",padx=10, pady=10)
+        self.question_label.grid(row=0, column=0, sticky='e',padx=10, pady=15)
+        self.question_entry = customtkinter.CTkTextbox(self.frame, height=40, width=500,padx=10, pady=20)
+        self.question_entry.grid(row=0, column=1, sticky='w',padx=10, pady=15)
 
-        self.create_button = customtkinter.CTkButton(self.main_frame, text="등록",command=self.create,height=100,width=150)
-        self.create_button.grid(row=0, column=2, rowspan=2)
+        self.create_button = customtkinter.CTkButton(self.frame, text="등록",command=self.create,height=50,width=100)
+        self.create_button.grid(row=0, column=2,columnspan = 2,padx=15)
 
-        self.answer_label = customtkinter.CTkLabel(self.main_frame, text="답변:",padx=10, pady=10)
-        self.answer_label.grid(row=1, column=0, sticky='e')
-        self.answer_entry = customtkinter.CTkTextbox(self.main_frame, height=150, width=500,padx=10, pady=20)
-        self.answer_entry.grid(row=1, column=1, sticky='w')
+        self.answer_label = customtkinter.CTkLabel(self.frame, text="답변:",padx=10, pady=10)
+        self.answer_label.grid(row=1, column=0, sticky='e', padx=10, pady=15)
+        self.answer_entry = customtkinter.CTkTextbox(self.frame, height=150, width=500,padx=10, pady=20)
+        self.answer_entry.grid(row=1, column=1, sticky='w', padx=10, pady=15)
 
-        self.listbox = tk.Listbox(self.main_frame,bg="#222222",fg="white",bd=0)
+        self.listbox = tk.Listbox(self.frame,bg="#222222",fg="white",bd=0)
         self.listbox.grid(row=2, column=0, columnspan=3, sticky="nsew")
 
     def create_button_frame(self):
-        self.button_frame = customtkinter.CTkFrame(self.main_frame, bg_color="#222222",fg_color="#222222",border_color="#222222")
+        self.button_frame = customtkinter.CTkFrame(self.frame)
         self.button_frame.grid(row=3, column=0, columnspan=3)
 
-        self.read_button = customtkinter.CTkButton(self.button_frame, text="조회", command=self.read,bg_color="#222222")
-        self.read_button.pack(side="left",padx=10,pady=10)
+        self.read_button = customtkinter.CTkButton(self.button_frame, text="조회", command=self.read)
+        self.read_button.grid(row=0, column=1, sticky='w')
 
-        self.delete_button = customtkinter.CTkButton(self.button_frame, text="삭제", command=self.delete,bg_color="#222222")
-        self.delete_button.pack(side="left",padx=10,pady=10)
+        self.delete_button = customtkinter.CTkButton(self.button_frame, text="삭제", command=self.delete)
+        self.delete_button.grid(row=0, column=3, sticky='w')
 
 
     def create_detail_frame(self):
