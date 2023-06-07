@@ -4,7 +4,7 @@ import json
 import customtkinter
 
 class QnAManager():
-    def __init__(self, root, filename='C:/workspace/comsaco/data/qna_data.json'):
+    def __init__(self, root, filename='./comsaco/data/qna_data.json'):
         self.qnas = []
         self.current_qna_index = None
         self.root = root
