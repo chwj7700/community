@@ -8,10 +8,11 @@ from functools import partial
 import customtkinter
 
 class SchoolManager():
-    def __init__(self, root, filename='./comsaco/data/school_data.json'):
+    def __init__(self, root, filename='./data/school_data.json'):
         self.root = root
         self.schools = []
         self.basePath = path.dirname(path.realpath(__file__))
+        
         self.schoolDict = []
         
         self.filename = filename
@@ -39,15 +40,14 @@ class SchoolManager():
 
             # Create and configure logo
             logoImage = Image.open(self.basePath + logoPath)
-            logoImage = logoImage.resize((259, 250), Image.ANTIALIAS)
-            logo = ImageTk.PhotoImage(logoImage)
+            logo = customtkinter.CTkImage(logoImage, size = (259, 250))
 
             # Create and pack canvas
             canvas = customtkinter.CTkFrame(self.main_frame)
             canvas.grid(column=column, row=row)
 
             # Create and pack button
-            button = customtkinter.CTkButton(canvas, command=partial(self.read, schoolCnt), image=logo,text="",fg_color="#222222")
+            button = customtkinter.CTkButton(canvas, command=partial(self.read, schoolCnt), image=logo,text="",fg_color="#222222", width=259, height=250)
             button.pack()
 
             # Create and pack label
@@ -137,8 +137,7 @@ class SchoolManager():
          # Load image and assign to label
         locationImgPath = school.locationImgPath
         pathImage = Image.open(self.basePath + locationImgPath)
-        pathImage = pathImage.resize((450, 200), Image.ANTIALIAS)
-        location_img = ImageTk.PhotoImage(pathImage)
+        location_img = customtkinter.CTkImage(pathImage, size = (450, 200))
             
         # Assign image to label
         self.location_image_label.configure(image=location_img)
@@ -152,6 +151,5 @@ class SchoolManager():
         try:
             with open(self.filename, 'r', encoding='UTF8') as s:
                  self.schools = [School(**data) for data in json.load(s)]
-                 print(self.schools)
         except FileNotFoundError:
             pass
